@@ -23,8 +23,8 @@ const playerHealTimers = new Map();
 world.afterEvents.worldInitialize.subscribe(() => {
     try {
         // BEの自然回復を無効化
-        const overworld = world.getDimension("overworld");
-        overworld.runCommand("gamerule naturalRegeneration false");
+        world.runCommand("gamerule naturalRegeneration false");
+        world.sendMessage("§a[Java治癒] naturalRegenerationを無効化しました");
         console.log("[Java治癒] naturalRegenerationを無効化しました");
     } catch (error) {
         console.error("[Java治癒] ゲームルールの設定に失敗:", error);
@@ -37,8 +37,19 @@ world.afterEvents.worldInitialize.subscribe(() => {
 world.afterEvents.playerSpawn.subscribe((event) => {
     if (!event.player) return;
     playerHealTimers.set(event.player.id, 0);
+    event.player.sendMessage("§a[Java治癒] アドオンが有効です");
     console.log(`[Java治癒] プレイヤー参加: ${event.player.name}`);
 });
+
+/**
+ * テスト用: 起動メッセージを表示
+ */
+system.runTimeout(() => {
+    const players = world.getAllPlayers();
+    for (const player of players) {
+        player.sendMessage("§e[Java治癒] テスト: スクリプトは動作中です");
+    }
+}, 100); // 5秒後にメッセージ
 
 /**
  * メインループ: 定期的にプレイヤーの状態をチェックして回復処理を実行
