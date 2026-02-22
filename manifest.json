@@ -4,7 +4,7 @@
         "name": "Java版治癒仕様",
         "description": "Java版の体力回復仕様をBEで再現するアドオン",
         "uuid": "5d462c78-1dd9-4734-a1a7-7ff49dad7a70",
-        "version": [1, 0, 0],
+        "version": [1, 0, 1],
         "min_engine_version": [1, 20, 0]
     },
     "modules": [
@@ -13,7 +13,7 @@
             "language": "javascript",
             "uuid": "c2970e8f-bc25-412d-907a-ab8cb7346be8",
             "entry": "scripts/main.js",
-            "version": [1, 0, 0]
+            "version": [1, 0, 1]
         }
     ],
     "dependencies": [
